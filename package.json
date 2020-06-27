@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/GreatDeveloper66/chat-bot/issues"
   },
-  "homepage": "https://github.com/GreatDeveloper66/chat-bot#readme"
+  "homepage": "https://github.com/GreatDeveloper66/chat-bot#readme",
+  "dependencies": {
+    "faker": "^4.1.0"
+  }
 }
