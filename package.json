@@ -1,0 +1,27 @@
+{
+  "name": "chat-bot",
+  "version": "1.0.0",
+  "description": "chat-bot app allows users to chat virtually with computer and/or other users",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GreatDeveloper66/chat-bot.git"
+  },
+  "keywords": [
+    "chat",
+    "bot",
+    "social",
+    "media",
+    "messaging",
+    "app"
+  ],
+  "author": "Adam Shaffer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GreatDeveloper66/chat-bot/issues"
+  },
+  "homepage": "https://github.com/GreatDeveloper66/chat-bot#readme"
+}
