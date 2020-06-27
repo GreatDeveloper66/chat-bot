@@ -1,3 +1,15 @@
+#DS Store
+.DS_Store
+
+#directories
+node_modules
+logs/
+
+#logs
+*.log
+*.txt
+
+
 # Build and Release Folders
 bin-debug/
 bin-release/
