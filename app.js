@@ -1,7 +1,7 @@
 let fs = require('fs')
 let faker = require('faker')
 let data = require('./data/data.json')
-
+/*
 const names = new Array(5).fill('').map(elem => faker.name.findName())
 const namesobj = {
     names: names
