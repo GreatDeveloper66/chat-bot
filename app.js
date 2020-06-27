@@ -13,3 +13,4 @@ fs.writeFile('./data/data.json', JSON.stringify(namesobj), (err)=> {
 fs.readFile('./data/data.json', 'utf-8', (err, data) => {
     console.log(data)
 })
+*/
