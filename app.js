@@ -9,9 +9,7 @@ const namesobj = {
 fs.writeFile('./data/data.json', JSON.stringify(namesobj), (err)=> {
     console.log('write finished', err ? err : '')
 })
-/*
-fs.readFile('.data/data.json','utf-8', (err.data) => {
-    let data = JSON.parse(data)
-    console.log(data.names)
+
+fs.readFile('./data/data.json', 'utf-8', (err, data) => {
+    console.log(data)
 })
-*/
