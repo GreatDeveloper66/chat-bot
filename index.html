@@ -8,9 +8,26 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </head>
 <div class="container">
+    <br>
     <div class="jumbotron">
         <h1 class="display-4">
             Send Message
         </h1>
+        <br>
+        <input class="form-control" placeholder="Name">
+        <button class="btn btn-success" id="send">Send</button>
+    </div>
+    <div id="messages">
+
     </div>
 </div>
+<script>
+    $(() => {
+        $("#send").click(() => {
+            addMessages({name: 'Tim', message: 'hello'})
+        })
+    })
+    function addMessages(message){
+        $("#messages").append(`<h4> ${message.name} </h4> <p> ${message.message} </p>`)
+    }
+</script>
