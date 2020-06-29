@@ -3,3 +3,9 @@ describe('calc', () =>{
         expect(2*2).toBe(5)
     })
 })
+
+describe('get messages', ( => {
+    it('should return 200 ok', () => {
+        
+    })
+}))
