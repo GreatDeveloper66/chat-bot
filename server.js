@@ -7,6 +7,9 @@ const mongoose = require('mongoose')
 app.use(express.static(__dirname))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
+
+mongoose.Promise = Promise
+
 const dbUrl = 'mongodb+srv://chat-bot-user:OHv1RfoVJzi5DcPo@cluster0-vo8rx.mongodb.net/<dbname>?retryWrites=true&w=majority'
 let messages = [
     {name: 'Tim', message: 'Hi'},
@@ -26,22 +29,46 @@ app.get('/messages', (req,res) => {
 
 app.post('/messages', (req,res) => {
     let message = new Message(req.body)
-    message.save(err => {
-        if(err){
-            sendStatus(500)
-            console.log('error')
-        }
-        else {
-            //Message.findOne({message: 'badwoord'}, (err, censored))
-            messages.push(req.body)
-            io.emit('message', req.body)
-            res.sendStatus(200)
-            console.log('save sucessful')
-        }
+    message.save()
+    .then(() => {
+            console.log('saved')
+            return Message.findOne({message: 'badword'})
     })
-    
+    .then(censored => {
+        if(censored){
+            console.log('censored words found', censored)
+            return Message.remove({_id: censored.id})
+        }
+        io.emit('message', req.body)
+        res.sendStatus(200)
+        console.log('save sucessful')
+    })
+    .catch(err => {
+        res.sendStatus(500)
+        return console.error(err)
+    })
 })
 
+/*
+    app.post('/messages', async (req,res) => {
+        try {
+            let message = new Message(req.body)
+            let savedMessage = await Message.save()
+            if(censored){
+                await Message.remove({ _id: censored.id })
+            }
+            else {
+                io.emit('message', req.body)
+            }
+            res.sendStatus(200)
+        } catch (error) {
+            res.sendStatus(500)
+            return console.error(err)
+        } finally {
+            console.log('finished')
+        }
+    })
+*/
 io.on('connection', socket => {
     console.log('user connected')
 })
