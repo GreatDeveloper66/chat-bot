@@ -12,14 +12,34 @@ let messages = [
     {name: 'Tim', message: 'Hi'},
     {name: 'Jane', message: 'GoodBye'}
 ]
+
+const Message = mongoose.model('Message', {
+    name: String,
+    message: String
+})
+
 app.get('/messages', (req,res) => {
-    res.send(messages)
+    Message.find({}, (err, messages) => {
+        res.send(messages)
+    })
 })
 
 app.post('/messages', (req,res) => {
-    messages.push(req.body)
-    io.emit('message', req.body)
-    res.sendStatus(200)
+    let message = new Message(req.body)
+    message.save(err => {
+        if(err){
+            sendStatus(500)
+            console.log('error')
+        }
+        else {
+            //Message.findOne({message: 'badwoord'}, (err, censored))
+            messages.push(req.body)
+            io.emit('message', req.body)
+            res.sendStatus(200)
+            console.log('save sucessful')
+        }
+    })
+    
 })
 
 io.on('connection', socket => {
