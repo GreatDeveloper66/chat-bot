@@ -21,11 +21,22 @@ const Message = mongoose.model('Message', {
     message: String
 })
 
+
+
 app.get('/messages', (req,res) => {
     Message.find({}, (err, messages) => {
         res.send(messages)
     })
 })
+
+app.get('/messages/:user', (req,res) => {
+    let user = req.params.user
+    Message.find({name: user}, (err, messages) => {
+        res.send(messages)
+    })
+})
+
+
 
 app.post('/messages', (req,res) => {
     let message = new Message(req.body)
@@ -94,5 +105,19 @@ client.connect(err => {
 });
 
 
+describe('get messages from user', () => {
+    it('should return 200 ok', done => {
+        request.get('http://localhost:3000/messages/tim', (err,res) => {
+            expect(res.statusCode).toEqual(200)
+            done()
+        })
+    })
 
+    it('name should be tim', done => {
+        request.get('http://localhost:3000/messages/tim', (err,res) => {
+            expect(JSON.parse(res.body)[0].name).toEqual('tim')
+            done()
+        })
+    })
+})
 */
