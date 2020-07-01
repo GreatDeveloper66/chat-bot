@@ -1,6 +1,9 @@
 #DS Store
 .DS_Store
 
+#ignore environment variables
+.env
+
 #directories
 node_modules
 logs/
