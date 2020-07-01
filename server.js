@@ -11,7 +11,7 @@ require('dotenv').config()
 
 mongoose.Promise = Promise
 
-//const dbUrl = 'mongodb+srv://chat-bot-user:OHv1RfoVJzi5DcPo@cluster0-vo8rx.mongodb.net/<dbname>?retryWrites=true&w=majority'
+
 const dbUrl = process.env.DBURL
 let messages = [
     {name: 'Tim', message: 'Hi'},
