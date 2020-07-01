@@ -7,10 +7,12 @@ const mongoose = require('mongoose')
 app.use(express.static(__dirname))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
+require('dotenv').config()
 
 mongoose.Promise = Promise
 
-const dbUrl = 'mongodb+srv://chat-bot-user:OHv1RfoVJzi5DcPo@cluster0-vo8rx.mongodb.net/<dbname>?retryWrites=true&w=majority'
+//const dbUrl = 'mongodb+srv://chat-bot-user:OHv1RfoVJzi5DcPo@cluster0-vo8rx.mongodb.net/<dbname>?retryWrites=true&w=majority'
+const dbUrl = process.env.DBURL
 let messages = [
     {name: 'Tim', message: 'Hi'},
     {name: 'Jane', message: 'GoodBye'}
